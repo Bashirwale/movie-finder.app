@@ -15,15 +15,12 @@ const NavBar:FC<Props> = ({onSearch}) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const closeMobileMenu=  () => {
-    setIsMobileMenuOpen(false);
-  }
- 
   const handleSearch  = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSearch(searchedText);
     navigate(`/movies/search/${searchedText}`);
     setSearchedText('')
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
 
@@ -31,7 +28,7 @@ const NavBar:FC<Props> = ({onSearch}) => {
     <nav className="flex items-center justify-between bg-gray-800 text-yellow-300 p-4">
       <div className="flex items-center">
         <h1 className="text-lg font-bold text-yellow-500">
-          <Link to='/' onClick={closeMobileMenu}>Movie-Finder</Link
+          <Link to='/' onClick={toggleMobileMenu}>Movie-Finder</Link
         ></h1>
         <ul className="hidden md:flex ml-8 space-x-4">
           <li>
@@ -86,13 +83,13 @@ const NavBar:FC<Props> = ({onSearch}) => {
         <div className="md:hidden absolute top-0 right-0 mt-16 p-10 h-1/2 bg-gray-800 w-full">
           <ul className="flex flex-col items-center space-y-4">
             <li>
-              <Link to="/movies/popular" onClick={closeMobileMenu} className="block py-2">Popular</Link>
+              <Link to="/movies/popular" onClick={toggleMobileMenu} className="block py-2">Popular</Link>
             </li>
             <li>
-              <Link to="/movies/top_rated" onClick={closeMobileMenu} className="block py-2">Top Rated</Link>
+              <Link to="/movies/top_rated" onClick={toggleMobileMenu} className="block py-2">Top Rated</Link>
             </li>
             <li>
-              <Link to="/movies/upcoming" onClick={closeMobileMenu} className="block py-2">Upcoming</Link>
+              <Link to="/movies/upcoming" onClick={toggleMobileMenu} className="block py-2">Upcoming</Link>
             </li>
             <li >
                 <form onSubmit={handleSearch}>
@@ -107,7 +104,6 @@ const NavBar:FC<Props> = ({onSearch}) => {
                   <button
                        type="submit"
                        className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md ml-2"
-                       onClick={closeMobileMenu}
                   >
                       Search
                   </button>
