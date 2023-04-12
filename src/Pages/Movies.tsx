@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Movie } from '../App';
 import {useParams } from 'react-router-dom'
 import MovieList from '../Components/MovieList';
+import Spinner from '../Components/shared/Spinner';
 
 
 type Props = {
@@ -49,7 +50,7 @@ const Movies : FC<Props> = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p className="text-gray-500 text-2xl">Loading movie details...</p>
+        <Spinner/>
       </div>
     );
   }

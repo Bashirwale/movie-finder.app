@@ -2,6 +2,7 @@ import {FC,useState,useEffect} from 'react';
 import axios from 'axios';
 import { Movie } from '../App';
 import MovieList from '../Components/MovieList';
+import Spinner from '../Components/shared/Spinner';
 
 type Props = {
   Movies:Movie[];
@@ -46,7 +47,7 @@ const SearchedMovies: FC<Props> = ({searchedText}) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p className="text-gray-500 text-2xl">Loading movie details...</p>
+        <Spinner/>
       </div>
     );
   }

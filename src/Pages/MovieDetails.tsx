@@ -1,7 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 import { Movie } from '../App';
 import { useParams } from 'react-router-dom';
+import Spinner from '../Components/shared/Spinner';
 
 type Props = {
   movies: Movie[];
@@ -12,6 +14,7 @@ const MovieDetails: FC<Props> = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean | string>(false);
 
+  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
@@ -39,7 +42,7 @@ const MovieDetails: FC<Props> = () => {
  if (loading) {
   return (
     <div className="flex justify-center items-center h-screen">
-      <p className="text-gray-500 text-2xl">Loading movie details...</p>
+      <Spinner/>
     </div>
   );
 }
@@ -83,6 +86,7 @@ return (
           </p>
         </div>
       </div>
+      <button onClick={() => navigate(-1)} className='mt-2 text-center text-white font-medium text-base bg-yellow-500 p-1 rounded-md'> Back</button>
     </div>
   );
 
